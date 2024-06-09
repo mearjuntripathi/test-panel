@@ -1,0 +1,328 @@
+/* Preloader CSS */
+#preloader {
+    text-align: center;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--panel-color);
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.jumper {
+    display: inline-block;
+    width: 100%;
+    height: 20px;
+}
+
+.jumper div {
+    display: inline-block;
+    width: 20px;
+    border-radius: 50%;
+    height: 100%;
+    background-color: var(--primary-color);
+    animation: jump 1s infinite ease-in-out;
+}
+
+.jumper div:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.jumper div:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes jump {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Timer component */
+
+.timer {
+    user-select: none;
+    top: 0;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 10px;
+    width: 100px;
+    border-radius: 0px 0 10px 10px;
+    background-color: var(--primary-color);
+    color: var(--panel-color);
+    text-align: center;
+}
+
+/* Question Box */
+
+.question-box {
+    padding: 25px;
+    margin-top: 30px;
+    user-select: none;
+    height: 90vh;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-family: "Poppins", sans-serif;
+    background-color: #f9f9f9;
+    position: relative;
+    /* Add this */
+}
+
+.question-box .options {
+    list-style: none;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.question-box .options li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: larger;
+    user-select: none;
+}
+
+.question-box .options li input {
+    cursor: pointer;
+}
+
+.operation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: auto;
+    /* Change this */
+    position: absolute;
+    /* Change this */
+    bottom: 0;
+    /* Add this */
+    left: 0;
+    /* Add this */
+    right: 0;
+    /* Add this */
+    padding: 20px;
+    /* Add this */
+}
+
+.operation button {
+    border: 2px solid var(--primary-color);
+    background-color: #fff;
+    color: var(--primary-color);
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.operation button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.operation button:disabled {
+    background-color: #cccccc;
+    color: #999;
+    border-color: #999;
+    cursor: not-allowed;
+}
+
+
+/* Navigation.jsx */
+
+.navigation {
+    user-select: none;
+    padding: 50px;
+    top: 0px;
+    position: fixed;
+    height: 100vh;
+    right: 0;
+    border: 1px solid #ccc;
+    max-width: 450px;
+    backdrop-filter: blur(2.5px);
+    transform: translateX(100%);
+    transition: all .5s linear;
+    opacity: 0.2;
+    visibility: hidden;
+}
+
+.navigation .options {
+    display: flex;
+    user-select: none;
+    justify-content: space-around;
+}
+
+.navigation .options .box {
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.active{
+    background-color: var(--primary-color);
+}
+
+.navigation .options .number {
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+.navigation .lists {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 70vh;
+    overflow: auto;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.navigation .lists .list {
+    border-radius: 0px 0px 10px 10px;
+    padding: 10px 20px;
+    color: white;
+    cursor: grab;
+    font-weight: bolder;
+}
+
+.navigation .submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background-color: #0056b3;
+    color: white;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+#navigate {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: black;
+    z-index: 999;
+    padding: 0px 20px;
+    border-radius: 50%;
+    color: white;
+    font-size: xx-large;
+    font-weight: bolder;
+    border: 2px solid;
+    transition: all 0.2s ease-in-out;
+}
+
+#navigate:hover {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(255, 255, 255);
+    z-index: 99;
+    padding: 0px 20px;
+    border-radius: 50%;
+    color: rgb(0, 0, 0);
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.show-navigation {
+
+    transform: translateX(0%);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Warning..jsx */
+
+.warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.warning-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+}
+
+.btn{
+    font-size: medium;
+    font-weight: bold;
+    padding: 5px 10px;
+    color: var(--primary-color);
+    border: 1px solid;
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* meadia query */
+
+@media (max-width: 490px) {
+    .operation {
+        padding: 10px;
+    }
+
+    .operation button {
+        padding: 5px 10px;
+    }
+}

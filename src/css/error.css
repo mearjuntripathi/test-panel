@@ -1,0 +1,45 @@
+.error{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+}
+
+.inner-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--panel-color);
+    color: var(--text-color);
+    padding: 50px;
+    gap: 20px;
+    border-radius: 30px;
+    box-shadow: 0 0 50px;
+}
+
+.inner-div h1 {
+    font-size: 6vw; 
+}
+.inner-div h2 {
+    font-size: 3vw;
+}
+
+.inner-div .btn {
+    border: none;
+    padding: 10px 30px;
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+    border-radius: 50px;
+    transition: all 0.2s ease-in-out;
+}
+
+.inner-div .btn:hover {
+    background-color: rgb(125, 125, 129);
+}
