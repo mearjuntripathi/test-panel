@@ -42,7 +42,6 @@ export default function TestPanel({ questions, handleOut }) {
         const timer = setInterval(() => {
             setTimeLeft(prev => {
                 if (prev === 1) {
-                    alert('Time out');
                     clearInterval(timer);
                     handleSubmit();
                     return 0;

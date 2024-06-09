@@ -2,12 +2,16 @@ import React from 'react';
 import '../css/instruction.css'; // Make sure to create corresponding CSS file for styling
 
 export default function Instruction({ setStep }) {
+  const testName = window.localStorage.getItem('test_name');
+
   function proceedToTest() {
     setStep(2);
   }
 
   return (
     <div className="instructions-container">
+      <h1>Welcome to {testName ? testName : ""}</h1>
+      <br />
       <h1>Exam Instructions</h1>
       <ul>
         <li>You can view each question along with four options.</li>

@@ -7,6 +7,11 @@ import { suspend } from "../script/api";
 
 export default function App({ questions }) {
     const navigate = useNavigate();
+    useEffect(() => {
+        if (!window.localStorage.getItem('token')) {
+            navigate('/login');
+        }
+    }, [navigate]);
 
     const handleOut = () => {
         window.localStorage.clear();
@@ -18,11 +23,6 @@ export default function App({ questions }) {
         handleOut();
     };
 
-    useEffect(() => {
-        if (!window.localStorage.getItem('token')) {
-            navigate('/login');
-        }
-    }, [navigate]);
 
     const [loading, setLoading] = useState(true);
     const [isFullscreen, setIsFullscreen] = useState(false);
