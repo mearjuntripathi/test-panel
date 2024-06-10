@@ -33,7 +33,7 @@ export default function TestPanel({ questions, handleOut }) {
         responses.map(response => response.answer === response.response ? score++ : score);
         console.log(score);
         await submitResponse(score, responses);
-        setMessage('You have sucessfully finished You test <br> see you later');
+        setMessage('You have sucessfully finished You test see you later');
         setWarning(true);
         // Here you can process the responses, such as sending them to an API, calculating the score, etc.
     };
@@ -59,7 +59,7 @@ export default function TestPanel({ questions, handleOut }) {
                     <p>{message}</p>
                     <br />
                     <button className="btn" onClick={handleOut}>
-                        Switch to Fullscreen
+                        Go to Homescreen
                     </button>
                 </Warning>
             )}
