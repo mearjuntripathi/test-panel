@@ -37,7 +37,7 @@ export default function Signup() {
             setMessage(response.message);
             setError('');
         } catch (error) {
-            setError(error.error || 'An error occurred during login.');
+            setError(error.error || 'An error occurred during Signup.');
             setMessage('');
         }
     }
