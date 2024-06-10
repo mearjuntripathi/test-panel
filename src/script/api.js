@@ -24,7 +24,7 @@ async function login(formData) {
 
 async function submitResponse(score, response) {
     try {
-        const respons = await axios.post(`${root_api}submit-response`, {score, response}, {
+        const respons = await axios.post(`${root_api}/submit-response`, {score, response}, {
             headers: {
                 'auth': window.localStorage.getItem('token')
             }
@@ -37,7 +37,7 @@ async function submitResponse(score, response) {
 
 async function suspend() {
     try {
-        const response = await axios.get(`${root_api}suspend`, {
+        const response = await axios.get(`${root_api}/suspend`, {
             headers: {
                 'auth': window.localStorage.getItem('token')
             }
