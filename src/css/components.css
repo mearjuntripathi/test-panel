@@ -247,7 +247,7 @@
     right: -10px;
     background-color: rgb(0, 89, 255);
     z-index: 999;
-    padding: 0px 20px;
+    padding: 0px 10px;
     color: white;
     font-size: x-large;
     font-weight: bolder;
@@ -255,6 +255,10 @@
     cursor: pointer;
     border-radius: 15px;
     transition: all 0.2s ease-in-out;
+}
+
+#navigate:hover{
+    color: rgb(255, 234, 0);
 }
 
 .show-navigation {
@@ -311,6 +315,10 @@
     }
 
     .operation button {
-        padding: 5px 10px;
+        padding: 5px 5px;
+    }
+
+    #navigate {
+        font-size: large;
     }
 }

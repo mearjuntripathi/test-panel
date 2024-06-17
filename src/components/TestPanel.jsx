@@ -6,13 +6,14 @@ import { submitResponse } from "../script/api";
 export default function TestPanel({ questions, handleOut }) {
     const [message,setMessage] = useState('');
     const [warning, setWarning] = useState(false);
+    const [alert, setAlert] = useState(false);
     const initialResponses = questions.map(question => ({
         question: question.question,
         answer: question.answer,
         response: ''
     }));
 
-    const [timeLeft, setTimeLeft] = useState(window.localStorage.getItem('timing') * 60);
+    const [timeLeft, setTimeLeft] = useState(6 * 60);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [responses, setResponses] = useState(initialResponses);
 
@@ -26,6 +27,14 @@ export default function TestPanel({ questions, handleOut }) {
         );
     };
 
+    const speak = (text) => {
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.warn('Speech synthesis not supported');
+        }
+    };
 
     const handleSubmit = async() => {
         console.log('User responses:', responses);
@@ -46,6 +55,10 @@ export default function TestPanel({ questions, handleOut }) {
                     handleSubmit();
                     return 0;
                 }
+                if(prev == 5*60){
+                    speak('Only 5 minutes left');
+                    setAlert(true);
+                }
                 return prev > 0 ? prev - 1 : 0;
             });
         }, 1000);
@@ -54,6 +67,12 @@ export default function TestPanel({ questions, handleOut }) {
 
     return (
         <>
+        {alert && (
+            <Warning>
+                <p>Only 5 min left</p>
+                <button className='btn' onClick={()=>{setAlert(false)}}>I understand</button>
+            </Warning>
+        )}
         {warning && (
                 <Warning>
                     <p>{message}</p>
