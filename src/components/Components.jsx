@@ -92,7 +92,7 @@ function Navigation({ totalQuestions, currentQuestion, changeQuestion, handleSub
     function toggleNavigation() {
         document.querySelector('.navigation').classList.toggle('show-navigation');
         const navigateButton = document.getElementById('navigate');
-        navigateButton.innerHTML = navigateButton.innerHTML === '‹' ? '›' : '‹';
+        navigateButton.innerHTML = navigateButton.innerHTML === 'Show Submit' ? 'Close Submit' : 'Show Submit';
     }
 
     const getQuestionClass = (index) => {
@@ -104,7 +104,7 @@ function Navigation({ totalQuestions, currentQuestion, changeQuestion, handleSub
 
     return (
         <>
-            <button id="navigate" onClick={toggleNavigation}>‹</button>
+            <button id="navigate" onClick={toggleNavigation}>Show Submit</button>
             <div className="navigation">
                 <div className="options">
                     <div className="box red">Not Attempted <span className="number">{Object.values(responses).filter(response => response.response === '').length}</span></div>

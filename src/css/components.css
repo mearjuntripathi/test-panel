@@ -244,29 +244,17 @@
 #navigate {
     position: fixed;
     top: 10px;
-    right: 10px;
-    background-color: black;
+    right: -10px;
+    background-color: rgb(0, 89, 255);
     z-index: 999;
     padding: 0px 20px;
-    border-radius: 50%;
     color: white;
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bolder;
     border: 2px solid;
+    cursor: pointer;
+    border-radius: 15px;
     transition: all 0.2s ease-in-out;
-}
-
-#navigate:hover {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background-color: rgb(255, 255, 255);
-    z-index: 99;
-    padding: 0px 20px;
-    border-radius: 50%;
-    color: rgb(0, 0, 0);
-    font-size: xx-large;
-    font-weight: bolder;
 }
 
 .show-navigation {
