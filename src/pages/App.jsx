@@ -4,15 +4,14 @@ import TestPanel from "../components/TestPanel";
 import Instruction from "../components/Instruction";
 import { useNavigate } from 'react-router-dom';
 import { suspend } from "../script/api";
-import {questions} from "../components/component"
 
-export default function App() {
+export default function App({ questions }) {
     const navigate = useNavigate();
-    // useEffect(() => {
-    //     if (!window.localStorage.getItem('token')) {
-    //         navigate('/login');
-    //     }
-    // }, [navigate]);
+    useEffect(() => {
+        if (!window.localStorage.getItem('token')) {
+            navigate('/login');
+        }
+    }, [navigate]);
 
     const handleOut = () => {
         window.localStorage.clear();
