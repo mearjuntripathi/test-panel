@@ -13,7 +13,7 @@ export default function TestPanel({ questions, handleOut }) {
         response: ''
     }));
 
-    const [timeLeft, setTimeLeft] = useState(window.localStorage.getItem('token') * 60);
+    const [timeLeft, setTimeLeft] = useState(window.localStorage.getItem('timing') * 60);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [responses, setResponses] = useState(initialResponses);
 
