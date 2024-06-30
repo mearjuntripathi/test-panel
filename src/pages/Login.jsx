@@ -2,16 +2,19 @@ import styles from "../css/login.module.css";
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { login } from "../script/api";
+import { Loading } from "../components/Components";
+
 
 export default function Login({ setQuestions }) {
     const [error, setError] = useState('');
+    const [loading,  setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
         const formDataObject = Object.fromEntries(formData.entries());
-
+        setLoading(true);
         try {
             const response = await login(formDataObject);
             window.localStorage.setItem('test_id', response[0].test_id);
@@ -30,10 +33,14 @@ export default function Login({ setQuestions }) {
             navigate('/');
         } catch (error) {
             setError(error.error || 'An error occurred during login.');
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
+        <>
+        {loading && <Loading />}
         <div className={styles.main}>
             <div className={styles.container}>
                 <h2>Welcome Back Student!</h2>
@@ -52,5 +59,6 @@ export default function Login({ setQuestions }) {
                 </form>
             </div>
         </div>
+        </>
     );
 }

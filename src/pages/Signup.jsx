@@ -3,10 +3,12 @@ import styles from "../css/login.module.css";
 import { Warning } from "../components/Components";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { signup } from "../script/api";
+import { Loading } from "../components/Components";
 
 export default function Signup() {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const moveHomeScreen = () => {
@@ -29,6 +31,7 @@ export default function Signup() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
         const formData = new FormData(event.target);
         const formDataObject = Object.fromEntries(formData.entries());
 
@@ -39,10 +42,14 @@ export default function Signup() {
         } catch (error) {
             setError(error.error || 'An error occurred during Signup.');
             setMessage('');
+        } finally {
+            setLoading(false);
         }
     }
 
     return (
+        <>
+        {loading && <Loading />}
         <div className={styles.main}>
             <div className={styles.container}>
                 <h2>Welcome Student!</h2>
@@ -66,5 +73,6 @@ export default function Signup() {
                 </form>
             </div>
         </div>
+        </>
     );
 }

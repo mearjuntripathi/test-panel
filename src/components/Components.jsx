@@ -15,6 +15,14 @@ function Preloader() {
     </div>);
 };
 
+const Loading = () => (
+    <div className="loading-overlay">
+        <div className="loading-content">
+            <div className="loading-circle"></div>
+            <p>This might take a moment, hang tight!</p>
+        </div>
+    </div>
+);
 
 // Timer.jsx component
 
@@ -138,4 +146,4 @@ function Warning(props) {
     </div>
 }
 
-export { Preloader, Timer, QuestionBox, Navigation, Warning }
+export { Preloader, Loading, Timer, QuestionBox, Navigation, Warning }

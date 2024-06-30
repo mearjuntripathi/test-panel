@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Timer, QuestionBox, Navigation } from './Components';
 import { Warning } from './Components';
 import { submitResponse } from "../script/api";
+import { Loading } from './Components';
 
 export default function TestPanel({ questions, handleOut }) {
-    const [message,setMessage] = useState('');
+    const [message, setMessage] = useState('');
     const [warning, setWarning] = useState(false);
     const [alert, setAlert] = useState(false);
+    const [loading, setLoading] = useState(true);
     const initialResponses = questions.map(question => ({
         question: question.question,
         answer: question.answer,
@@ -18,11 +20,11 @@ export default function TestPanel({ questions, handleOut }) {
     const [responses, setResponses] = useState(initialResponses);
 
     const storeResponse = (questionId, response) => {
-        setResponses(prevResponses => 
-            prevResponses.map(item => 
+        setResponses(prevResponses =>
+            prevResponses.map(item =>
                 item.question === questions.find(q => q.id === questionId).question
-                ? { ...item, response: response }
-                : item
+                    ? { ...item, response: response }
+                    : item
             )
         );
     };
@@ -36,12 +38,19 @@ export default function TestPanel({ questions, handleOut }) {
         }
     };
 
-    const handleSubmit = async() => {
+    const handleSubmit = async () => {
         console.log('User responses:', responses);
         let score = 0;
         responses.map(response => response.answer === response.response ? score++ : score);
-        console.log(score);
-        await submitResponse(score, responses);
+        setLoading(true);
+        try {
+            await submitResponse(score, responses);
+        } catch (error) {
+            console.error(error);
+        }
+        finally {
+            setLoading(false);
+        }
         setMessage('You have sucessfully finished You test see you later');
         setWarning(true);
         // Here you can process the responses, such as sending them to an API, calculating the score, etc.
@@ -55,7 +64,7 @@ export default function TestPanel({ questions, handleOut }) {
                     handleSubmit();
                     return 0;
                 }
-                if(prev == 5*60){
+                if (prev == 5 * 60) {
                     speak('Only 5 minutes left');
                     setAlert(true);
                 }
@@ -67,13 +76,14 @@ export default function TestPanel({ questions, handleOut }) {
 
     return (
         <>
-        {alert && (
-            <Warning>
-                <p>Only 5 min left</p>
-                <button className='btn' onClick={()=>{setAlert(false)}}>I understand</button>
-            </Warning>
-        )}
-        {warning && (
+            {loading && <Loading />}
+            {alert && (
+                <Warning>
+                    <p>Only 5 min left</p>
+                    <button className='btn' onClick={() => { setAlert(false) }}>I understand</button>
+                </Warning>
+            )}
+            {warning && (
                 <Warning>
                     <p>{message}</p>
                     <br />
