@@ -76,7 +76,7 @@ export default function TestPanel({ questions, handleOut }) {
 
     return (
         <>
-            {loading && <Loading />}
+            {/* {loading && <Loading />} */}
             {alert && (
                 <Warning>
                     <p>Only 5 min left</p>

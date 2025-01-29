@@ -24,21 +24,21 @@ export default function App({ questions }) {
     };
 
 
-    // const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [step, setStep] = useState(1);
 
-    // useEffect(() => {
-    //     const handleLoad = () => setLoading(false);
+    useEffect(() => {
+        const handleLoad = () => setLoading(false);
 
-    //     if (document.readyState === 'complete') {
-    //         handleLoad();
-    //     } else {
-    //         window.addEventListener('load', handleLoad);
-    //     }
+        if (document.readyState === 'complete') {
+            handleLoad();
+        } else {
+            window.addEventListener('load', handleLoad);
+        }
 
-    //     return () => window.removeEventListener('load', handleLoad);
-    // }, []);
+        return () => window.removeEventListener('load', handleLoad);
+    }, []);
 
     useEffect(() => {
         const handleFullscreenChange = () => {
@@ -115,6 +115,7 @@ export default function App({ questions }) {
 
     return (
         <>
+            {loading ? <Preloader /> : ""}
             {!isFullscreen && (
                 <Warning>
                     <p>To take the exam, it's essential to switch to fullscreen mode. Without fullscreen, you won't be able to proceed with the exam. Please switch to fullscreen mode now to begin.</p>
