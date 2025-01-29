@@ -115,7 +115,6 @@ export default function App({ questions }) {
 
     return (
         <>
-            {loading ? <Preloader /> : ""}
             {!isFullscreen && (
                 <Warning>
                     <p>To take the exam, it's essential to switch to fullscreen mode. Without fullscreen, you won't be able to proceed with the exam. Please switch to fullscreen mode now to begin.</p>
